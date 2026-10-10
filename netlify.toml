@@ -1,0 +1,17 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Camera and microphone need a secure context (HTTPS, which Netlify provides)
+# and an explicit permissions policy that allows them for this origin.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Permissions-Policy = "camera=(self), microphone=(self)"
+    X-Content-Type-Options = "nosniff"
